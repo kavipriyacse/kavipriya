@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dob calculation</title>
+    <style>
+        body {
+text-align: center;
+        }
+        .container {
+            padding-top: 25px;
+        }
+        .form-inputs{
+            text-align: center;
+            width: 30%;
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid;
+            border-radius: 5px;
+        }
+        .btn{
+            text-align:center ;
+            width: auto;
+            margin: 8px;
+            padding: 8px;
+            border: 1px solid;
+            border-radius: 6px;
+            color:aliceblue; 
+            background-color:rgb(98, 165, 253);
+            font-size: 18px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+                }
+                hr{
+                    border-top: 1px dashed;
+                }
+    </style>
+</head>
+<body>
+    <div class=".container">
+        <div>
+            <label for="bod"> Date of Birth</label> 
+            <input type="date" name="dob" id="dob>"
+        class="form form-inputs"/>
+        <div id="display.data"></div>
+        <hr/>
+    </div>
+        <button class="btn" id="btn" onclick="calculate">calculate date</button>
+<script>
+    function calculation() {
+        let input = document.getElementById("dob").value;
+        if(Date.parse(input)){
+            let InputDate=new Date(input);
+            let currentDate=new Date();
+            document.getElementById("display.date").innerHTML=`
+            input value:${input}<br>
+            Formatted Date:${inputDate} <br>
+            currentDate:${currentDate}
+            `;
+        }
+        console.log("hi i am here!!");
+        documet.getElementsById("display.data").innerHTML+"hi i am here!!";
+    }
+</script>
+    </body>
+    </html>
