@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dob calculation</title>
+    <title>Date of Birth Calculation</title>
     <style>
         body {
-text-align: center;
+            text-align: center;
         }
         .container {
             padding-top: 25px;
         }
-        .form-inputs{
+        .form-inputs {
             text-align: center;
             width: 30%;
             margin: 5px;
@@ -19,49 +19,60 @@ text-align: center;
             border: 1px solid;
             border-radius: 5px;
         }
-        .btn{
-            text-align:center ;
+        .btn {
+            text-align: center;
             width: auto;
             margin: 8px;
             padding: 8px;
             border: 1px solid;
             border-radius: 6px;
-            color:aliceblue; 
-            background-color:rgb(98, 165, 253);
+            color: aliceblue;
+            background-color: rgb(98, 165, 253);
             font-size: 18px;
             font-family: 'Times New Roman', Times, serif;
             font-weight: bold;
-                }
-                hr{
-                    border-top: 1px dashed;
-                }
+        }
+        hr {
+            border-top: 1px dashed;
+        }
     </style>
 </head>
 <body>
-    <div class=".container">
-        <div>
-            <label for="bod"> Date of Birth</label> 
-            <input type="date" name="dob" id="dob>"
-        class="form form-inputs"/>
+    <div class="container">
+        <label for="dob">Date of Birth</label>
+        <input type="date" name="dob" id="dob" class="form-inputs" />
         <div id="display.data"></div>
-        <hr/>
+        <hr />
+        <button class="btn" id="btn" onclick="calculation()">Calculate Date</button>
     </div>
-        <button class="btn" id="btn" onclick="calculate">calculate date</button>
-<script>
-    function calculation() {
-        let input = document.getElementById("dob").value;
-        if(Date.parse(input)){
-            let InputDate=new Date(input);
-            let currentDate=new Date();
-            document.getElementById("display.date").innerHTML=`
-            input value:${input}<br>
-            Formatted Date:${inputDate} <br>
-            currentDate:${currentDate}
-            `;
+
+    <script>
+        function calculation() {
+            let input = document.getElementById("dob").value;
+            if (Date.parse(input)) {
+                let inputDate = new Date(input);
+                let currentDate = new Date();
+                let millisecDiff = currentDate.getTime() - inputDate.getTime();
+                let secDiff = Math.floor(millisecDiff / 1000);
+                let minDiff = Math.floor(secDiff / 60);
+                let hourDiff = Math.floor(minDiff / 60);
+                let dayDiff = Math.floor(hourDiff / 24);
+                
+                document.getElementById("display.data").innerHTML = `
+                    Input value: ${input}<br>
+                    Formatted Date: ${inputDate}<br>
+                    Current Date: ${currentDate}<br>
+                    Day Difference: ${dayDiff}<br>
+                    Hour Difference: ${hourDiff}<br>
+                    Minute Difference: ${minDiff}<br>
+                    Second Difference: ${secDiff}<br>
+                    Millisecond Difference: ${millisecDiff}`;
+            } else {
+                document.getElementById("display.data").innerHTML = "Select a valid date";
+            }
         }
-        console.log("hi i am here!!");
-        documet.getElementsById("display.data").innerHTML+"hi i am here!!";
-    }
-</script>
-    </body>
-    </html>
+
+        console.log("Hi, I am here!!");
+    </script>
+</body>
+</html>
