@@ -52,21 +52,38 @@
             if (Date.parse(input)) {
                 let inputDate = new Date(input);
                 let currentDate = new Date();
-                let millisecDiff = currentDate.getTime() - inputDate.getTime();
+
+                // Calculate the difference in milliseconds
+                let millisecDiff = currentDate - inputDate;
                 let secDiff = Math.floor(millisecDiff / 1000);
                 let minDiff = Math.floor(secDiff / 60);
                 let hourDiff = Math.floor(minDiff / 60);
                 let dayDiff = Math.floor(hourDiff / 24);
+
+                // Calculate the difference in years and months
+                let yearsDiff = currentDate.getFullYear() - inputDate.getFullYear();
+                let monthsDiff = currentDate.getMonth() - inputDate.getMonth() + (yearsDiff * 12);
                 
+                // Adjust months and years if the current month is earlier in the year
+                if (currentDate.getDate() < inputDate.getDate()) {
+                    monthsDiff--;
+                }
+
+                // Calculate years from the months difference
+                yearsDiff = Math.floor(monthsDiff / 12);
+                monthsDiff = monthsDiff % 12;
+
                 document.getElementById("display.data").innerHTML = `
                     Input value: ${input}<br>
-                    Formatted Date: ${inputDate}<br>
-                    Current Date: ${currentDate}<br>
+                    Formatted Date: ${inputDate.toDateString()}<br>
+                    Current Date: ${currentDate.toDateString()}<br>
                     Day Difference: ${dayDiff}<br>
                     Hour Difference: ${hourDiff}<br>
                     Minute Difference: ${minDiff}<br>
                     Second Difference: ${secDiff}<br>
-                    Millisecond Difference: ${millisecDiff}`;
+                    Millisecond Difference: ${millisecDiff}<br>
+                    Year Difference: ${yearsDiff}<br>
+                    Month Difference: ${monthsDiff}`;
             } else {
                 document.getElementById("display.data").innerHTML = "Select a valid date";
             }
